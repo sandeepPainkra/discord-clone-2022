@@ -1,0 +1,106 @@
+.sidebar {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 0.25;
+  background-color: rgb(59, 59, 59);
+}
+.sidebar_top {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid rgb(34, 34, 34);
+  justify-content: space-between;
+  color: #fff;
+}
+
+/* Sidebar Channels section starts */
+
+.sidebar_channelSection {
+  flex: 1;
+  display: flex;
+  overflow-y: scroll;
+  flex-direction: column;
+}
+.sidebar_channelSection::-webkit-scrollbar {
+  display: none;
+}
+.sidebar_hader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar_haderInfo {
+  display: flex;
+  align-items: center;
+  color: gray;
+}
+.sidebar_hader .MuiSvgIcon-root:hover {
+  color: #fff;
+}
+.sidebar_hader .AddIcon {
+  color: #fff !important;
+}
+.sidebar_hader .MuiIconButton-root .MuiSvgIcon-root {
+  color: gray !important;
+}
+
+/* sidebar Network section  */
+
+.sidebar_network {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 0.8rem;
+  border-top: 2px solid gray;
+  border-bottom: 2px solid gray;
+}
+.sidebar_network .MuiSvgIcon-root {
+  color: rgb(13, 224, 13);
+  font-size: 3rem;
+}
+.sidebar_network h4 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: rgb(13, 224, 13);
+}
+.sidebarNet_info {
+  padding: 0 0.3rem;
+}
+.sidebar_network span {
+  font-size: 1.2rem;
+  color: gray;
+  font-weight: 500;
+}
+.sidebar_network .sidebarNet_icon {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sidebar_network .sidebarNet_icon .MuiSvgIcon-root {
+  font-size: 1.8rem;
+  color: gray !important;
+  margin: 0.4rem;
+}
+
+/* sidebar profile section  */
+
+.sidebar_profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+}
+.sidebar_profile h2 {
+  color: #fff;
+  font-size: 1.3rem;
+}
+.sidebar_profileIcons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sidebar_profileIcons .MuiSvgIcon-root {
+  color: gray;
+  margin: 0.3rem;
+}

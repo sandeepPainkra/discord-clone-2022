@@ -1,0 +1,95 @@
+.chat {
+  flex: 0.75;
+  background-color: #414040;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chat hader starts here */
+
+.chat_hader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  border-bottom: 3px solid rgb(36, 35, 35);
+}
+.chat_haderInfo h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+}
+.chat_haderInfo h2 span {
+  font-size: 1.8rem;
+  color: gray;
+  margin-right: 0.5rem;
+}
+.chat_haderRight {
+  display: flex;
+  align-items: center;
+}
+.chat_haderRight .MuiSvgIcon-root {
+  color: gray;
+  margin: 0 0.5rem;
+  font-size: 1.6rem;
+}
+.chat_haderSearch {
+  display: flex;
+  align-items: center;
+  background-color: rgb(26, 25, 25);
+  padding: 0.3rem;
+  border-radius: 5px;
+}
+.chat_haderSearch input {
+  background: 0;
+  outline: none;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: gray;
+}
+
+/* Chat body sectoin starts here */
+
+.chat_messages {
+  flex: 1;
+  /* background-color: yellowgreen; */
+}
+
+/* Chat Footer starts here */
+
+.chat_footer {
+  width: 90%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(80 79 79);
+  position: relative;
+  left: 2.5rem;
+  top: -0.5rem;
+  border-radius: 6px;
+}
+
+.chat_footer form {
+  flex: 1;
+  display: flex;
+}
+
+.chat_footer form input {
+  flex: 1;
+  padding: 1rem;
+  background: none;
+  border: 0;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: gray;
+}
+.chat_footer form button {
+  display: none;
+}
+.chat_footer .MuiSvgIcon-root {
+  color: gray;
+  font-size: 1.9rem;
+}

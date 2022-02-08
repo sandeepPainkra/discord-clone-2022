@@ -1,58 +1,111 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { Avatar, IconButton } from "@material-ui/core";
+import { Add, KeyboardArrowDown } from "@material-ui/icons";
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import "./Components/Sidebar.css";
+import Chat from "./Components/Chat.js";
+import SidebarChannel from "./Components/SidebarChannel.js";
+import SignalCellularAltOutlinedIcon from "@material-ui/icons/SignalCellularAltOutlined";
+import CallOutlinedIcon from "@material-ui/icons/CallOutlined";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import MicNoneOutlinedIcon from "@material-ui/icons/MicNoneOutlined";
+import HeadsetOutlinedIcon from "@material-ui/icons/HeadsetOutlined";
+import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
+import db from "./firebase";
+const App = () => {
+  const [room, setRoom] = useState([]);
+  const CreateChannels = () => {
+    const className = prompt("Enter Class Name:");
+    db.collection("rooms").add({
+      room: className,
+    });
+    console.log(className);
+  };
 
-function App() {
+  useEffect(() => {
+    db.collection("rooms").onSnapshot((snapshot) => {
+      setRoom(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+  }, []);
+  console.log(room);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      {/* sidebar starts here */}
+
+      <div className="sidebar">
+        {/* sidebar top start here */}
+        <div className="sidebar_top">
+          <h2>Sandeep Painkra</h2>
+          <KeyboardArrowDown />
+        </div>
+
+        {/* Sidebar channels section starts here */}
+
+        <div className="sidebar_channelSection">
+          <div className="sidebar_hader">
+            <div className="sidebar_haderInfo">
+              <KeyboardArrowDown />
+              <p>Text Channel</p>
+            </div>
+            <IconButton>
+              <Add onClick={CreateChannels} />
+            </IconButton>
+          </div>
+
+          <div className="sidebar_channels">
+            {room.map((data, index) => {
+              return (
+                <SidebarChannel
+                  key={index}
+                  roomName={data.data.room}
+                  roomId={data.id}
+                />
+              );
+            })}
+          </div>
+        </div>
+        {/* Sidebar Network section starts here */}
+
+        <div className="sidebar_network">
+          <SignalCellularAltOutlinedIcon />
+          <div className="sidebarNet_info">
+            <h4>Voice Connected</h4>
+            <span>sandy</span>
+          </div>
+          <div className="sidebarNet_icon">
+            <InfoOutlinedIcon />
+            <CallOutlinedIcon />
+          </div>
+        </div>
+
+        {/* Sidebar Profile section starts here */}
+
+        <div className="sidebar_profile">
+          <Avatar />
+          <h2>Sandeep Painkra</h2>
+          <div className="sidebar_profileIcons">
+            <MicNoneOutlinedIcon />
+            <HeadsetOutlinedIcon />
+            <SettingsOutlinedIcon />
+          </div>
+        </div>
+      </div>
+
+      {/* sidebar ends here */}
+
+      {/* Chat section starts here */}
+
+      <Chat />
+
+      {/* Chat section ends here */}
     </div>
   );
-}
+};
 
 export default App;

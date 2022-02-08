@@ -1,0 +1,19 @@
+.sidebar_channel {
+  padding: 0.5rem 0.7rem;
+}
+.sidebar_channel:hover {
+  /* color: #fff; */
+  cursor: pointer;
+  background-color: #fff;
+}
+.sidebar_channel h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: gray;
+  display: flex;
+  align-items: center;
+}
+.sidebar_channel h2 span {
+  font-size: 1.5rem;
+  margin-right: 0.4rem;
+}

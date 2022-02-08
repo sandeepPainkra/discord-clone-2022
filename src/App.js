@@ -12,7 +12,9 @@ import MicNoneOutlinedIcon from "@material-ui/icons/MicNoneOutlined";
 import HeadsetOutlinedIcon from "@material-ui/icons/HeadsetOutlined";
 import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
 import db from "./firebase";
+import Login from "./Components/Login";
 const App = () => {
+  const [user, setUser] = useState(false);
   const [room, setRoom] = useState([]);
   const CreateChannels = () => {
     const className = prompt("Enter Class Name:");
@@ -32,79 +34,84 @@ const App = () => {
       );
     });
   }, []);
-  console.log(room);
 
   return (
-    <div className="App">
-      {/* sidebar starts here */}
+    <>
+      {!user ? (
+        <Login />
+      ) : (
+        <div className="App">
+          {/* sidebar starts here */}
 
-      <div className="sidebar">
-        {/* sidebar top start here */}
-        <div className="sidebar_top">
-          <h2>Sandeep Painkra</h2>
-          <KeyboardArrowDown />
-        </div>
-
-        {/* Sidebar channels section starts here */}
-
-        <div className="sidebar_channelSection">
-          <div className="sidebar_hader">
-            <div className="sidebar_haderInfo">
+          <div className="sidebar">
+            {/* sidebar top start here */}
+            <div className="sidebar_top">
+              <h2>Sandeep Painkra</h2>
               <KeyboardArrowDown />
-              <p>Text Channel</p>
             </div>
-            <IconButton>
-              <Add onClick={CreateChannels} />
-            </IconButton>
+
+            {/* Sidebar channels section starts here */}
+
+            <div className="sidebar_channelSection">
+              <div className="sidebar_hader">
+                <div className="sidebar_haderInfo">
+                  <KeyboardArrowDown />
+                  <p>Text Channel</p>
+                </div>
+                <IconButton>
+                  <Add onClick={CreateChannels} />
+                </IconButton>
+              </div>
+
+              <div className="sidebar_channels">
+                {room.map((data, index) => {
+                  return (
+                    <SidebarChannel
+                      key={index}
+                      roomName={data.data.room}
+                      roomId={data.id}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+            {/* Sidebar Network section starts here */}
+
+            <div className="sidebar_network">
+              <SignalCellularAltOutlinedIcon />
+              <div className="sidebarNet_info">
+                <h4>Voice Connected</h4>
+                <span>sandy</span>
+              </div>
+              <div className="sidebarNet_icon">
+                <InfoOutlinedIcon />
+                <CallOutlinedIcon />
+              </div>
+            </div>
+
+            {/* Sidebar Profile section starts here */}
+
+            <div className="sidebar_profile">
+              <Avatar />
+              <h2>Sandeep Painkra</h2>
+              <div className="sidebar_profileIcons">
+                <MicNoneOutlinedIcon />
+                <HeadsetOutlinedIcon />
+                <SettingsOutlinedIcon />
+              </div>
+            </div>
           </div>
 
-          <div className="sidebar_channels">
-            {room.map((data, index) => {
-              return (
-                <SidebarChannel
-                  key={index}
-                  roomName={data.data.room}
-                  roomId={data.id}
-                />
-              );
-            })}
-          </div>
+          {/* sidebar ends here */}
+
+          {/* Chat section starts here */}
+
+          <Chat />
+
+          {/* Chat section ends here */}
         </div>
-        {/* Sidebar Network section starts here */}
-
-        <div className="sidebar_network">
-          <SignalCellularAltOutlinedIcon />
-          <div className="sidebarNet_info">
-            <h4>Voice Connected</h4>
-            <span>sandy</span>
-          </div>
-          <div className="sidebarNet_icon">
-            <InfoOutlinedIcon />
-            <CallOutlinedIcon />
-          </div>
-        </div>
-
-        {/* Sidebar Profile section starts here */}
-
-        <div className="sidebar_profile">
-          <Avatar />
-          <h2>Sandeep Painkra</h2>
-          <div className="sidebar_profileIcons">
-            <MicNoneOutlinedIcon />
-            <HeadsetOutlinedIcon />
-            <SettingsOutlinedIcon />
-          </div>
-        </div>
-      </div>
-
-      {/* sidebar ends here */}
-
-      {/* Chat section starts here */}
-
-      <Chat />
-
-      {/* Chat section ends here */}
-    </div>
+      )}
+    </>
   );
 };
 

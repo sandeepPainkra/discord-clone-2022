@@ -13,14 +13,18 @@ import HeadsetOutlinedIcon from "@material-ui/icons/HeadsetOutlined";
 import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
 import db from "./firebase";
 import Login from "./Components/Login";
+import { useSelector } from "react-redux";
+import { selectUser } from "./features/counterSlice";
 const App = () => {
-  const [user, setUser] = useState(false);
+  const user = useSelector(selectUser);
   const [room, setRoom] = useState([]);
   const CreateChannels = () => {
     const className = prompt("Enter Class Name:");
-    db.collection("rooms").add({
-      room: className,
-    });
+    if(className){
+      db.collection("rooms").add({
+        room: className,
+      });
+    }
     console.log(className);
   };
 
@@ -46,7 +50,7 @@ const App = () => {
           <div className="sidebar">
             {/* sidebar top start here */}
             <div className="sidebar_top">
-              <h2>Sandeep Painkra</h2>
+              <h2>{user.username}</h2>
               <KeyboardArrowDown />
             </div>
 
@@ -92,8 +96,8 @@ const App = () => {
             {/* Sidebar Profile section starts here */}
 
             <div className="sidebar_profile">
-              <Avatar />
-              <h2>Sandeep Painkra</h2>
+            <Avatar alt={user.username}  src={user.imgUrl} />
+              <h2>{user.username}</h2>
               <div className="sidebar_profileIcons">
                 <MicNoneOutlinedIcon />
                 <HeadsetOutlinedIcon />

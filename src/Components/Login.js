@@ -1,16 +1,26 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { enterUser, selectUser } from "../features/counterSlice";
 import { auth, provider } from "../firebase";
 import "./Login.css";
 const Login = () => {
+  const dispatch = useDispatch();
   const LoginClick = () => {
     auth
       .signInWithPopup(provider)
-      .than((data) => {
-        console.log(data);
-      })
-      .catch((error) => alert(error.message));
+      .catch((error) => alert(error.message))
+      .then((data) => {
+        dispatch(
+          enterUser({
+            username: data.user.displayName,
+            email: data.user.email,
+            imgUrl: data.user.photoURL,
+          })
+        );
+      });
   };
+
   return (
     <div onClick={LoginClick} className="login">
       <div className="loginContainer">

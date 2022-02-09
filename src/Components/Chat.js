@@ -13,13 +13,14 @@ import {
 } from "@material-ui/icons";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectRoomId } from "../features/counterSlice";
+import { selectRoomId, selectUser } from "../features/counterSlice";
 import db from "../firebase";
 import "./Chat.css";
 
 const Chat = () => {
   const [roomName, setRoomName] = useState();
   const roomId = useSelector(selectRoomId);
+
 
   useEffect(() => {
     if (roomId) {
@@ -30,7 +31,6 @@ const Chat = () => {
         });
     }
   }, [roomId]);
-
   return (
     <div className="chat">
       {/* chat hader starts here */}

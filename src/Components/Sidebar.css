@@ -13,6 +13,9 @@
   justify-content: space-between;
   color: #fff;
 }
+.sidebar_top h2{
+  font-size: 1.2rem;
+}
 
 /* Sidebar Channels section starts */
 
@@ -93,7 +96,8 @@
 }
 .sidebar_profile h2 {
   color: #fff;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  margin-left: 1rem;
 }
 .sidebar_profileIcons {
   display: flex;

@@ -11,11 +11,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.8rem 1rem;
+  padding: 0.6rem 1rem;
   border-bottom: 3px solid rgb(36, 35, 35);
 }
 .chat_haderInfo h2 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #fff;
 }

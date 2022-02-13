@@ -15,12 +15,14 @@ import db from "./firebase";
 import Login from "./Components/Login";
 import { useSelector } from "react-redux";
 import { selectUser } from "./features/counterSlice";
+import { auth, provider } from "./firebase.js";
+import firebase from "firebase"
 const App = () => {
   const user = useSelector(selectUser);
   const [room, setRoom] = useState([]);
   const CreateChannels = () => {
     const className = prompt("Enter Class Name:");
-    if(className){
+    if (className) {
       db.collection("rooms").add({
         room: className,
       });
@@ -38,6 +40,7 @@ const App = () => {
       );
     });
   }, []);
+
 
   return (
     <>
@@ -96,7 +99,7 @@ const App = () => {
             {/* Sidebar Profile section starts here */}
 
             <div className="sidebar_profile">
-            <Avatar alt={user.username}  src={user.imgUrl} />
+              <Avatar  alt={user.username} src={user.imgUrl} />
               <h2>{user.username}</h2>
               <div className="sidebar_profileIcons">
                 <MicNoneOutlinedIcon />
